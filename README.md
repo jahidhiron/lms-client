@@ -15,9 +15,6 @@ The Learning Management System (LMS) project is a comprehensive platform designe
 
 ## Installation
 
-Install Redis in Memory Database
-Install Postgres SQL Database
-
 ```bash
 git clone https://github.com/jahidhiron/lms-client.git
 cd lms-client
