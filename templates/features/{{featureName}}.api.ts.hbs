@@ -1,0 +1,44 @@
+import { AxiosResponse } from 'axios';
+import { axios } from '~/helpers/config';
+import {
+  AddUpdate{{ titleCase featureName}}Model,
+  AddUpdate{{ titleCase featureName }}ModelResp,
+  Delete{{ titleCase featureName }}ModelResp,
+  Get{{ titleCase featureName }}Model,
+  Get{{ titleCase featureName }}Props,
+  List{{ titleCase featureNameInPlural}}Props,
+  List{{ titleCase featureName }}Model,
+} from './{{ featureName }}.model';
+
+const endpoint = '/{{featureNameInPlural}}';
+
+// API Endpoints
+export const get{{titleCase featureNameInPlural}}API = ({ page, size }: List{{titleCase featureNameInPlural}}Props) =>
+  axios
+    .get<any, AxiosResponse<List{{ titleCase featureName }}Model, any>>(`${endpoint}`, {
+      params: { page, size },
+    }).then(data => data.data);
+
+export const get{{ titleCase featureName }}API = ({ id }: Get{{ titleCase featureName }}Props) =>
+  axios
+    .get<any, AxiosResponse<Get{{ titleCase featureName }}Model, any>>(`${endpoint}/${id}`).then(data => data.data);
+
+export const add{{ titleCase featureName }}API = (data: AddUpdate{{ titleCase featureName }}Model) =>
+  axios
+    .post<any, AxiosResponse<AddUpdate{{ titleCase featureName }}ModelResp, any>>(
+      `${endpoint}`,
+      data
+    ).then(data => data.data);
+
+export const update{{ titleCase featureName }}API = (id: string, data: AddUpdate{{ titleCase featureName }}Model) =>
+  axios
+    .put<any, AxiosResponse<AddUpdate{{ titleCase featureName }}ModelResp, any>>(
+      `${endpoint}/${id}`,
+      data
+    ).then(data => data.data);
+
+export const delete{{ titleCase featureName }}API = (id: string) =>
+  axios
+    .delete<any, AxiosResponse<Delete{{ titleCase featureName }}ModelResp, any>>(
+      `${endpoint}/${id}`
+    ).then(data => data.data);

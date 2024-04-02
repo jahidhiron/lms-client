@@ -1,0 +1,21 @@
+
+.select_card{
+
+    width: 200px;
+    height: 200px;
+    padding: var(--mantine-spacing-md);
+    text-align: center;
+    background-color: var(--mantine-color-gray-light);
+    border-radius: var(--mantine-radius-sm);
+
+    &[data-selected='true']{
+        background-color: var(--mantine-color-orange-light);
+        border: 1px solid var(--mantine-color-orange-filled);
+    }
+
+    &[data-disabled]{
+        background-color: var(--mantine-color-gray-light);
+        opacity: .5;
+    }
+
+}

@@ -1,0 +1,21 @@
+.wrapper {
+  min-height: 100vh;
+  background-size: cover;
+  background-image: url(/auth-bg.jpg);
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-right: rem(1px) solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-7));
+  min-height: 100vh;
+  max-width: rem(450px);
+  padding-top: rem(80px);
+
+  @media (max-width: var(--mantine-breakpoint-sm)) {
+    max-width: 100%;
+  }
+}
+

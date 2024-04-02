@@ -1,0 +1,74 @@
+import { Button, Flex, Stack } from '@mantine/core';
+import { joiResolver, useForm } from '@mantine/form';
+import type { FC } from 'react';
+import { toast } from 'react-hot-toast';
+import { AddUpdate{{titleCase featureName}}Model } from '~/features/{{featureName}}/{{featureName}}.model';
+import { addUpdate{{titleCase featureName}}Schema } from '~/features/{{featureName}}/{{featureName}}.validator';
+import { use{{titleCase featureName}}Mutations } from '~/features/{{featureName}}/use-{{featureName}}';
+import { errorResolver } from '~/helpers/utils';
+import uiStore from '~/libs/store/uiStore';
+import GroupedTextInput from '../core/GroupedTextInput';
+
+interface AddUpdate{{titleCase featureName}}FormProps {
+  initialData?: AddUpdate{{titleCase featureName}}Model;
+  {{featureName}}Id?: string;
+}
+
+const AddUpdate{{titleCase featureName}}Form: FC<AddUpdate{{titleCase featureName}}FormProps> = ({
+  initialData,
+  {{featureName}}Id,
+}) => {
+  const closeDialog = uiStore((state) => state.closeDialog);
+  const { addNew{{titleCase featureName}}, update{{titleCase featureName}} } = use{{titleCase featureName}}Mutations();
+  const form = useForm<AddUpdate{{titleCase featureName}}Model>({
+    initialValues: initialData ?? {
+      // Put your initial data
+    },
+    validate: joiResolver(addUpdate{{titleCase featureName}}Schema),
+  });
+
+  return (
+    <form
+      onSubmit={form.onSubmit(
+        (values) => {
+          if (initialData && {{featureName}}Id) {
+            toast.promise(update{{titleCase featureName}}({{featureName}}Id, values), {
+              success: (data) => {
+                closeDialog();
+                return data.message;
+              },
+              error: errorResolver(form),
+              loading: 'updating {{featureName}}...',
+            });
+            return;
+          }
+
+          toast.promise(addNew{{titleCase featureName}}(values), {
+            success: (data) => {
+              closeDialog();
+              return data.message;
+            },
+
+            error: errorResolver(form),
+            loading: 'adding {{featureName}}...',
+          });
+        },
+        (err) => {
+          console.log(err);
+        }
+      )}
+    >
+      <Stack>
+        <GroupedTextInput label="{{titleCase featureName}} Name"  />
+
+        <Flex align="center" justify="center">
+          <Button type="submit">
+            { {{featureName}}Id ? 'Update {{titleCase featureName}}' : 'Add {{titleCase featureName}}'}
+          </Button>
+        </Flex>
+      </Stack>
+    </form>
+  );
+};
+
+export default AddUpdate{{titleCase featureName}}Form;

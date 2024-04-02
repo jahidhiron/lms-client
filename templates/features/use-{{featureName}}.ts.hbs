@@ -1,0 +1,92 @@
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useRouter } from 'next/router';
+import { useMemo } from 'react';
+import { queryClient } from '~/helpers/config';
+import {
+  add{{titleCase featureName}}API,
+  delete{{titleCase featureName}}API,
+  get{{titleCase featureNameInPlural}}API,
+  get{{titleCase featureName}}API,
+  update{{titleCase featureName}}API,
+} from './{{featureName}}.api';
+import {
+  AddUpdate{{titleCase featureName}}Model,
+  Get{{titleCase featureName}}Props,
+  List{{titleCase featureNameInPlural}}Props,
+} from './{{featureName}}.model';
+
+const QUERY_KEY = '{{featureNameInPlural}}';
+
+export const use{{titleCase featureNameInPlural}} = ({ page = 1, size = 10 }: List{{titleCase featureNameInPlural}}Props) => {
+  const { data, ...others } = useQuery({
+    queryKey: [QUERY_KEY, page, size],
+    queryFn: ({ queryKey }) =>
+      get{{titleCase featureNameInPlural}}API({
+        page: queryKey.at(1) as number,
+        size: queryKey.at(2) as number,
+      }),
+  });
+
+  const {{featureNameInPlural}} = useMemo(
+    () => ({
+      {{featureNameInPlural}}: data?.data?.{{featureNameInPlural}} || [],
+      current_page: page,
+      total_page: data?.data?.totalPage || 0,
+      row_per_page: size || 10,
+      total_{{featureNameInPlural}}: data?.data?.totalItem || 0,
+    }),
+    [data, page]
+  );
+
+  return { ...{{featureNameInPlural}}, ...others };
+};
+
+export const use{{titleCase featureName}} = ({ id }: Get{{titleCase featureName}}Props) => {
+  const { data, ...others } = useQuery({
+    queryKey: [QUERY_KEY, id],
+    queryFn: ({ queryKey }) => get{{titleCase featureName}}API({ id: queryKey.at(-1) as Get{{titleCase featureName}}Props['id'] }),
+    enabled: !!id,
+  });
+
+  const {{featureName}} = useMemo(() => data?.data.{{featureName}}, [data]);
+
+  return { {{featureName}}, ...others };
+};
+
+export const use{{titleCase featureName}}Mutations = () => {
+  const router = useRouter();
+  const page = parseInt(router?.query?.page as string) || 1;
+
+  const add{{titleCase featureName}}Mutation = useMutation({
+    mutationFn: (data: AddUpdate{{titleCase featureName}}Model) => add{{titleCase featureName}}API(data),
+    onSuccess() {
+      queryClient.refetchQueries({queryKey: [QUERY_KEY, page]});
+    },
+  });
+  const addNew{{titleCase featureName}} = async (data: AddUpdate{{titleCase featureName}}Model) => {
+    return add{{titleCase featureName}}Mutation.mutateAsync(data);
+  };
+
+  const update{{titleCase featureName}}Mutation = useMutation({
+    mutationFn: (vars: never[]) => update{{titleCase featureName}}API(vars[0], vars[1]),
+    onSuccess(data, variables) {
+      queryClient.refetchQueries({queryKey: [QUERY_KEY, page]});
+      queryClient.setQueryData([QUERY_KEY, variables[0]], data);
+    },
+  });
+  const update{{titleCase featureName}} = async (id: string, data: AddUpdate{{titleCase featureName}}Model) => {
+    return update{{titleCase featureName}}Mutation.mutateAsync([id as never, data as never]);
+  };
+
+  const delete{{titleCase featureName}}Mutation = useMutation({
+    mutationFn: (id: string) => delete{{titleCase featureName}}API(id),
+    onSuccess() {
+      queryClient.refetchQueries({queryKey: [QUERY_KEY, page]});
+    },
+  });
+  const delete{{titleCase featureName}} = async (id: string) => {
+    return delete{{titleCase featureName}}Mutation.mutateAsync(id);
+  };
+
+  return { addNew{{titleCase featureName}}, update{{titleCase featureName}}, delete{{titleCase featureName}} };
+};

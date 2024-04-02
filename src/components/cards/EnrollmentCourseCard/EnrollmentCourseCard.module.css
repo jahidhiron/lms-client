@@ -1,0 +1,10 @@
+.enrollmentCard{
+    min-width: 100%;
+    z-index: 0;
+
+}
+
+.enrollmentCard:hover>  p{
+    text-decoration: none !important;
+
+}

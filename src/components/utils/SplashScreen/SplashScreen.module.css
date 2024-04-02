@@ -1,0 +1,8 @@
+.splash{
+    position: fixed;
+    inset: 0;
+    background-color: var(--mantine-color-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }

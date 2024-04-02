@@ -1,0 +1,43 @@
+.progressbar, .progress, .buffered{
+    position: relative;
+    width: 100.6%;
+    height: 10px;
+    border-radius: 3px;
+    z-index: 10;
+}
+
+.progress{
+    position: absolute;
+    /* background: var(--mantine-color-orange-filled); */
+}
+.progressbarTrack::before{
+    width: 100.5%;
+    background-color: var(--mantine-color-gray-6);
+}
+.progressbarTrack::after{
+    position: absolute;
+    height: 100%;
+    background-color: var(--mantine-color-gray-4);
+    top: 0;
+    left: 0;
+    content: '';
+    border-radius: var(--slider-radius);
+}
+
+.mantine-Slider-track{
+    &::before{
+        width: 100%;
+    }
+}
+
+
+.marker{
+    position: absolute;
+    top: -0px;
+    left: 0;
+    left: var(--marker-width);
+    color: aliceblue;
+    display: flex;
+    align-items: right;
+    justify-content: right;
+}

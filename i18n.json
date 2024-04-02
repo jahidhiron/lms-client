@@ -1,0 +1,10 @@
+{
+  "locales": ["en", "jp"],
+  "defaultLocale": "en",
+  "pages": {
+    "*": ["common", "auth"],
+    "/console/teacher/course/[cid]/manage/goals": ["intended-learners"],
+    "/console/teacher/course/[cid]/manage/curriculum": ["curriculum"],
+    "/console/teacher/course/[cid]/manage/basics": ["basics"]
+  }
+}

@@ -1,0 +1,9 @@
+.course_card{
+    transition: transform 100ms linear, border-color 100ms linear;
+
+    @mixin hover {
+        border-color: var(--mantine-color-gray-filled);
+        transform: translateY(-5px)
+    }
+
+}

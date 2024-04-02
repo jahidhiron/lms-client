@@ -1,0 +1,12 @@
+.playList{
+    .playListItem{
+
+        @mixin hover{
+            background-color: var(--mantine-color-gray-light)
+        }
+
+        &[data-playing="true"]{
+            background-color: var(--mantine-color-dark-light);
+        }
+    }
+}

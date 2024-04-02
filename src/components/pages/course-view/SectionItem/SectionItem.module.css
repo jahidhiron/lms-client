@@ -1,0 +1,15 @@
+
+.sectionItem{
+    padding: var(--mantine-spacing-xs);
+    border-radius: var(--mantine-radius-sm);
+    transition: background-color 200ms linear;
+
+    @mixin hover{
+        background: var(--mantine-color-dark-light);
+
+    }
+
+    &[data-active="true"]{
+        background-color: var(--mantine-color-orange-light);
+    }
+}

@@ -1,0 +1,31 @@
+import {
+  GetFeatureProps,
+  GetFeatureModel,
+  ListFeatureModel,
+  ListFeaturesProps
+} from '~/helpers/shared-model';
+
+export type Get{{titleCase featureName}}Props = GetFeatureProps;
+
+export type List{{titleCase featureNameInPlural}}Props = ListFeaturesProps;
+
+export type {{titleCase featureName}}Model = {
+
+};
+
+export type AddUpdate{{titleCase featureName}}Model = {
+
+};
+
+export type AddUpdate{{titleCase featureName}}ModelResp = {
+  message: string;
+  {{featureName}}: Get{{titleCase featureName}}Model;
+};
+
+export type Delete{{titleCase featureName}}ModelResp = {
+  message: string;
+};
+
+export type Get{{titleCase featureName}}Model = GetFeatureModel<{{titleCase featureName}}Model, '{{featureName}}'>;
+
+export type List{{titleCase featureName}}Model = ListFeatureModel<Get{{titleCase featureName}}Model,'{{featureNameInPlural}}'>;
