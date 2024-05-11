@@ -4,7 +4,15 @@
 
 ## Description
 
-The Learning Management System (LMS) project is a comprehensive platform designed to streamline online education and training. Whether you're an educational institution, a corporate organization, or an individual educator, this open-source LMS offers a flexible and scalable solution for managing courses, delivering content, and tracking student progress.
+As part of my professional experience, I led the development of a comprehensive E-Learning Management System that facilitates online course management and learning.
+<br />
+Developed a secure authentication system that enables students, instructors, and administrators to create and log into their accounts safely.
+<br />
+Created course management functionality for instructors, including options to upload course materials, assignments, and quizzes.
+<br />
+Added various features to deliver course content in multiple formats, including text, documents, videos, and interactive multimedia.
+<br />
+Developed various functionalities that can help manage private tuition and tuition schedules, upload bulk students, manage groups, and more.
 
 ## Table of Contents
 
